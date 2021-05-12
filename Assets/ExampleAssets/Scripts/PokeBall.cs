@@ -10,11 +10,14 @@ public class PokeBall : MonoBehaviour
         
     }
     private Vector3 initPos;
+    private Quaternion initQuat;
     // Start is called before the first frame update
     void Start()
     {
         initPos = this.transform.localPosition;
+        initQuat = this.transform.localRotation;
         gameObject.GetComponent<Rigidbody>().useGravity = false;
+        catchDialogue.SetActive(false);
     }
     private float startTime, catchTime;
     private Vector3 startPos;
@@ -93,13 +96,16 @@ public class PokeBall : MonoBehaviour
 
     private void resetPosition()
     {
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
         transform.localPosition = initPos;
-        catched = false;
+        transform.localRotation = initQuat;
         gameObject.GetComponent<Rigidbody>().useGravity = false;
-        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        gameObject.GetComponent<Rigidbody>().freezeRotation = true;
-        gameObject.GetComponent<Rigidbody>().rotation = Quaternion.Euler(-25, 180, 0);
-        gameObject.GetComponent<Rigidbody>().freezeRotation = false;
+        catched = false;
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        //gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //gameObject.GetComponent<Rigidbody>().freezeRotation = true;
+        //gameObject.GetComponent<Rigidbody>().rotation = Quaternion.Euler(-25, 180, 0);
+        //gameObject.GetComponent<Rigidbody>().freezeRotation = false;
         catchDialogue.SetActive(false);
         if (pokemon != null)
         {
