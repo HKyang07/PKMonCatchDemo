@@ -6,7 +6,7 @@ public class Pokemon : MonoBehaviour
 {
     private void Awake()
     {
-        Debug.Log("Pokemon appear!");
+        Debug.Log("Pokemon appear!!");
     }
 
     
